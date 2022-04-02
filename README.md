@@ -5,11 +5,10 @@
   npm install
 `
 
-## Run
-1. configure .env file with your MONGO_URL  
-2. Run the command  
+## Usage
+1. configure .env file with your MONGO_URL and SECRET_KEY
+2. Run the command
 `
   npm run start
 `  
-
-When you see 'Listening on port 5000' and 'DB connection established', it means web server is ready.  
+3. When you see 'Listening on port 5000' and 'DB connection established', it means web server is ready.  
