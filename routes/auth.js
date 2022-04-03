@@ -3,27 +3,28 @@ const User = require('../models/User.js')
 const CryptoJS = require('crypto-js')
 const jwt = require('jsonwebtoken')
 
-// Register 注册
+// Register
 router.post('/register', async (req, res) => {
+  // create a new document object
   const newUser = new User({
     username: req.body.username,
     email: req.body.email,
     password: CryptoJS.AES.encrypt(req.body.password, process.env.SECRET_KEY).toString()
   })
 
+  // save the new user to user collection
   try {
     const savedUsr = await newUser.save()
     res.json(savedUsr)
-    console.log(savedUsr)
   } catch (error) {
     res.status(500).json(error)
-    console.log(error)
   }
 })
 
 // Login
 router.post('/login', async (req, res) => {
   try {
+    // check user's username and password
     const user = await User.findOne({ username: req.body.username })
     if (!user) {
       res.status(401).json('The username or password is incorrect')
@@ -32,6 +33,8 @@ router.post('/login', async (req, res) => {
     if (password !== req.body.password) {
       res.status(401).json('The username or password is incorrect')
     }
+
+    // sign token
     const accessToken = jwt.sign(
       {
         id: user._id,
@@ -42,10 +45,11 @@ router.post('/login', async (req, res) => {
         expiresIn: '3d'
       }
     )
+
+    // return token and user's info
     res.json({ message: 'Login successful', user, accessToken })
   } catch (error) {
     res.status(500).json(error)
-    console.log(error)
   }
 })
 
