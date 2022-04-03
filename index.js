@@ -8,6 +8,7 @@ const authRoute = require('./routes/auth.js')
 const productRoute = require('./routes/product.js')
 const orderRoute = require('./routes/order.js')
 const cartRoute = require('./routes/cart.js')
+const checkoutRoute = require('./routes/checkout.js')
 
 // connect to MongoDB
 mongoose
@@ -29,6 +30,7 @@ app.use('/api/user', userRoute)
 app.use('/api/product', productRoute)
 app.use('/api/order', orderRoute)
 app.use('/api/cart', cartRoute)
+app.use('/api/checkout', checkoutRoute)
 
 app.listen(5000, () => {
   console.log('Listening on port 5000')
