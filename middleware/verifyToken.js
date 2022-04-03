@@ -11,13 +11,13 @@ const verifyToken = (req, res, next) => {
       next()
     })
   } else {
-    return res.status(401).json('You are not authenticated.')
+    return res.status(401).json('Token does not exist.')
   }
 }
 
-const verifyTokenAndAuthrization = (req, res, next) => {
+const verifyTokenAndAuthorization = (req, res, next) => {
   verifyToken(req, res, () => {
-    if (req.payload.id == req.params.id || req.payload.idAdmin) {
+    if (req.payload.id == req.params.id || req.payload.isAdmin) {
       next()
     } else {
       res.status(401).json('You are not authenticated.')
@@ -25,4 +25,14 @@ const verifyTokenAndAuthrization = (req, res, next) => {
   })
 }
 
-module.exports = { verifyToken, verifyTokenAndAuthrization }
+const verifyTokenAndAdmin = (req, res, next) => {
+  verifyToken(req, res, () => {
+    if (req.payload.isAdmin) {
+      next()
+    } else {
+      res.status(401).json('You are not admin.')
+    }
+  })
+}
+
+module.exports = { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin }

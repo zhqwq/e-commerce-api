@@ -9,7 +9,7 @@
 1. configure .env file with your MONGO_URL  
 2. Run the command  
 `
-  npm run start
+  npm run serve
 `  
 
 When you see 'Listening on port 5000' and 'DB connection established', it means web server is ready.  

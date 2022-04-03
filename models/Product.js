@@ -28,7 +28,7 @@ const ProductSchema = new mongoose.Schema(
       required: true
     }
   },
-  { timestamp: true } // createAt, updateAt
+  { timestamps: true } // createAt, updateAt
 )
 
 module.exports = mongoose.model('Product', ProductSchema)
