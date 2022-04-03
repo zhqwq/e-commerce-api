@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 require('dotenv').config()
+const cors = require('cors')
 const userRoute = require('./routes/user.js')
 const authRoute = require('./routes/auth.js')
 const productRoute = require('./routes/product.js')
@@ -15,6 +16,7 @@ mongoose
   .catch(err => console.log(err))
 
 // middlware
+app.use(cors())
 app.use(express.json())
 
 // test endpoint
