@@ -6,7 +6,7 @@
 `
 
 ## Usage
-1. configure .env file with your MONGO_URL and SECRET_KEY
+1. configure .env file with your MONGO_URL, SECRET_KEY, STRIPE_KEY
 2. Run the command
 `
   npm run serve
