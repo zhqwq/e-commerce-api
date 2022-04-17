@@ -13,7 +13,7 @@ const checkoutRoute = require('./routes/checkout.js')
 // connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URL)
-  .then(() => console.log('DB connection established'))
+  .then(() => console.log('Connect to MongoDB successfully'))
   .catch(err => console.log(err))
 
 // middlware
@@ -33,5 +33,5 @@ app.use('/api/cart', cartRoute)
 app.use('/api/checkout', checkoutRoute)
 
 app.listen(5000, () => {
-  console.log('Listening on port 5000')
+  console.log('Web server is listening on port 5000')
 })
